@@ -13,4 +13,4 @@ All other code/media are released under the MIT Licence.
 [alfred]: http://www.alfredapp.com/
 [alfred-workflow]: http://www.deanishe.net/alfred-workflow/
 [jumpdesktop]: https://github.com/yaoxinghuo/alfred-jumpdesktop-workflow
-[sample]: https://raw.github.com/andyjhall/alfred-devops/master/docs/sample.png
+[sample]: https://github.com/andyjhall/alfred-jumpdesktop/blob/main/docs/sample.png
