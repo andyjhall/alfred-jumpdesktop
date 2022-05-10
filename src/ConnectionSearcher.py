@@ -22,6 +22,7 @@ def read_connections():
                   (protocol_switch(dict_content['ProtocolTypeCode']), dict_content['TcpHostName'], dict_content['Username'])
 
         connections.append({
+            'id': dict_content['UniqueId'],
             'name': dict_content['DisplayName'],
             'command': command,
             'path': jump,
@@ -40,18 +41,18 @@ def protocol_switch(x):
 
 
 def filter_key_for_connection(connection):
-    return connection['name'] + ' ' + str(connection['tags'])
+    return connection['name'] + ' ' + str(connection['id'])
 
 
 def sort_key_for_connection(connection):
     return connection['name']
 
-
-
 def main(wf):
     query = wf.args[0]
     connections = wf.cached_data('connections', read_connections, max_age=30)
-    connections = wf.filter(query, connections, filter_key_for_connection, match_on=MATCH_SUBSTRING)
+
+    if query and connections:
+        connections = wf.filter(query, connections, filter_key_for_connection, match_on=MATCH_SUBSTRING)
 
     connections.sort(key=sort_key_for_connection)
     for connection in connections:
